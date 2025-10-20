@@ -3,19 +3,14 @@
 */
 
 :root {
-    /* Cores Personalizadas */
+    /* Cores Personalizadas (Ajuste a seu gosto!) */
     --cor-primaria: #0077b6;     /* Azul Forte */
     --cor-secundaria: #00b4d8;  /* Azul Claro */
-    --cor-fundo-claro: #e6e6fa; /* Lavanda suave */
+    --cor-fundo-secao: #e6e6fa; /* Lavanda suave */
     --cor-texto: #333333;       /* Cinza Escuro */
     --cor-texto-claro: #ffffff; /* Branco */
     --cor-hover-menu: #48cae4;  /* Ciano claro para hover */
     --sombra-secao: 0 4px 8px rgba(0, 0, 0, 0.1);
-
-    /* Alturas Fixas */
-    --altura-cabecalho: 80px;
-    --altura-menu: 50px;
-    --espacamento-fixo: calc(var(--altura-cabecalho) + var(--altura-menu));
 }
 
 * {
@@ -28,12 +23,11 @@ body {
     font-family: 'Arial', sans-serif;
     color: var(--cor-texto);
     line-height: 1.6;
-    /* Ajustado para usar variável de espaçamento */
-    padding-top: var(--espacamento-fixo); 
+    padding-top: 150px; /* Espaço para cabeçalho e menu fixos */
 
     /* EXIGÊNCIA: Fundo da página em gradiente */
     background: linear-gradient(135deg, #a8dadc 0%, #457b9d 100%);
-    background-attachment: fixed;
+    background-attachment: fixed; /* Opcional: para manter o gradiente fixo na rolagem */
 }
 
 /*
@@ -52,7 +46,6 @@ body {
     width: 100%;
     z-index: 1000;
     box-shadow: var(--sombra-secao);
-    height: var(--altura-cabecalho); /* Garante altura para referência */
 }
 
 #cabecalho h1 {
@@ -63,7 +56,7 @@ body {
     background-color: var(--cor-secundaria);
     /* EXIGÊNCIA: Menu sempre aparente */
     position: fixed;
-    top: var(--altura-cabecalho); /* Abaixo do cabeçalho, usando variável */
+    top: 80px; /* Abaixo do cabeçalho */
     left: 0;
     width: 100%;
     z-index: 900;
@@ -92,8 +85,8 @@ body {
 
 /* EXIGÊNCIA: Hover no menu */
 #menu-navegacao a:hover {
-    background-color: var(--cor-hover-menu);
-    color: var(--cor-texto);
+    background-color: var(--cor-hover-menu); /* Mudar cor de fundo no hover */
+    color: var(--cor-texto); /* Opcional: Mudar cor da fonte */
 }
 
 /*
@@ -104,8 +97,10 @@ main {
     padding: 20px;
 }
 
+/* No arquivo Style.css */
+
 .conteudo-secao {
-    background-color: var(--cor-fundo-claro); /* Usando variável renomeada */
+    background-color: var(--cor-fundo-secao);
     margin: 40px auto;
     padding: 25px;
     max-width: 900px;
@@ -117,25 +112,22 @@ main {
     scroll-margin-top: 120px; 
 }
 
-/* Melhoria: Adiciona um espaço para o topo da seção ao navegar pela âncora */
+/* EXIGÊNCIA: Translação quando o mouse estiver sobre a seção */
+.conteudo-secao:hover {
+    transform: translateX(10px); /* Move a seção 10px para a direita */
+}
+
 .conteudo-secao h2 {
-    scroll-margin-top: var(--espacamento-fixo); 
     color: var(--cor-primaria);
     border-bottom: 2px solid var(--cor-secundaria);
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
 
-
-/* EXIGÊNCIA: Translação quando o mouse estiver sobre a seção */
-.conteudo-secao:hover {
-    transform: translateX(10px); /* Move a seção 10px para a direita */
-}
-
 .depoimento {
     text-align: justify;
     margin-top: 15px;
-    font-size: 1.1em; /* Ajustado para 1.1em para melhor leitura no geral, mas o 1.4em original não estava errado */
+    font-size: 1.4em;
 }
 
 /* Container para o vídeo (ajuda na responsividade) */
@@ -155,17 +147,16 @@ main {
     height: 100%;
 }
 
-/* Ajuste de Layout - Flexbox */
-.livro-info,
-.perfil-info {
+.livro-info {
     display: flex;
     gap: 20px;
-    align-items: flex-start; /* Alinhamento superior padrão */
-    margin-bottom: 15px;
+    align-items: flex-start;
 }
 
 .perfil-info {
-    align-items: center; /* Alinha o texto do perfil verticalmente */
+    display: flex;
+    gap: 20px;
+    align-items: center;
 }
 
 .texto-perfil {
@@ -184,7 +175,7 @@ main {
 }
 
 .livro-info .imagem-conteudo {
-    width: 150px;
+    width: 150px; /* Largura fixa para a imagem do livro */
     flex-shrink: 0;
 }
 
@@ -203,12 +194,7 @@ main {
 
 /* ESTILOS DE LINKS E REDES SOCIAIS */
 
-.link-externo {
-    margin-top: 20px; /* Adiciona margem acima do link externo */
-}
-
-.link-externo a, 
-.link-social {
+.link-externo a, .link-social {
     color: var(--cor-primaria);
     text-decoration: none;
     font-weight: bold;
@@ -216,8 +202,7 @@ main {
     transition: color 0.3s ease;
 }
 
-.link-externo a:hover, 
-.link-social:hover {
+.link-externo a:hover, .link-social:hover {
     color: var(--cor-secundaria);
     text-decoration: underline;
 }
@@ -237,7 +222,6 @@ footer {
     padding: 15px;
     font-size: 0.9em;
     margin-top: 40px;
-    width: 100%; /* Garante que ocupe a largura total */
 }
 
 footer p {
@@ -245,19 +229,12 @@ footer p {
 }
 
 /*
-  AJUSTES DE RESPONSIVIDADE
+  AJUSTES DE RESPONSIVIDADE (Opcional, mas recomendado)
 */
 
 @media (max-width: 768px) {
-    /* Alturas Fixas para Mobile */
-    :root {
-        --altura-menu-mobile: 130px; /* Altura aproximada do menu vertical */
-        --espacamento-fixo: calc(var(--altura-cabecalho) + var(--altura-menu-mobile));
-    }
-
     body {
-        /* Ajuste baseado nas novas alturas fixas para mobile */
-        padding-top: var(--espacamento-fixo); 
+        padding-top: 190px; /* Ajuste para dispositivos menores (cabeçalho + menu) */
     }
 
     #cabecalho {
@@ -265,7 +242,7 @@ footer p {
     }
 
     #menu-navegacao {
-        top: var(--altura-cabecalho); /* Mantém abaixo do cabeçalho */
+        top: 85px; /* Ajuste o menu para ficar abaixo do cabeçalho */
     }
 
     #menu-navegacao ul {
@@ -273,37 +250,23 @@ footer p {
     }
 
     #menu-navegacao a {
-        padding: 5px 10px; /* Diminui o padding vertical do item de menu */
+        padding: 10px;
     }
 
-    .livro-info, 
-    .perfil-info {
+    .livro-info, .perfil-info {
         flex-direction: column;
         text-align: center;
     }
 
     .livro-info .imagem-conteudo {
         width: 60%;
-        margin: 0 auto; /* Centraliza a imagem do livro */
     }
 
     .foto-aluno {
         margin-bottom: 10px;
     }
 
-    .texto-perfil .depoimento {
-        text-align: left; /* Mantém o depoimento justificado ou alinhado à esquerda para blocos maiores */
-    }
-}
-
-/* Ajuste adicional para telas muito estreitas */
-@media (max-width: 480px) {
-    .conteudo-secao {
-        padding: 15px;
-        margin: 20px auto;
-    }
-
     .depoimento {
-        font-size: 1em;
+        text-align: left;
     }
 }
