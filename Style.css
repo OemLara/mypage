@@ -1,0 +1,309 @@
+/*
+  ESTILOS GERAIS E LAYOUT
+*/
+
+:root {
+    /* Cores Personalizadas */
+    --cor-primaria: #0077b6;     /* Azul Forte */
+    --cor-secundaria: #00b4d8;  /* Azul Claro */
+    --cor-fundo-claro: #e6e6fa; /* Lavanda suave */
+    --cor-texto: #333333;       /* Cinza Escuro */
+    --cor-texto-claro: #ffffff; /* Branco */
+    --cor-hover-menu: #48cae4;  /* Ciano claro para hover */
+    --sombra-secao: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    /* Alturas Fixas */
+    --altura-cabecalho: 80px;
+    --altura-menu: 50px;
+    --espacamento-fixo: calc(var(--altura-cabecalho) + var(--altura-menu));
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    color: var(--cor-texto);
+    line-height: 1.6;
+    /* Ajustado para usar variável de espaçamento */
+    padding-top: var(--espacamento-fixo); 
+
+    /* EXIGÊNCIA: Fundo da página em gradiente */
+    background: linear-gradient(135deg, #a8dadc 0%, #457b9d 100%);
+    background-attachment: fixed;
+}
+
+/*
+  ESTILOS DO CABEÇALHO E MENU (FIXOS)
+*/
+
+#cabecalho {
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto-claro);
+    padding: 10px;
+    text-align: center;
+    /* EXIGÊNCIA: Cabeçalho sempre aparente */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: var(--sombra-secao);
+    height: var(--altura-cabecalho); /* Garante altura para referência */
+}
+
+#cabecalho h1 {
+    margin-bottom: 5px;
+}
+
+#menu-navegacao {
+    background-color: var(--cor-secundaria);
+    /* EXIGÊNCIA: Menu sempre aparente */
+    position: fixed;
+    top: var(--altura-cabecalho); /* Abaixo do cabeçalho, usando variável */
+    left: 0;
+    width: 100%;
+    z-index: 900;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#menu-navegacao ul {
+    list-style: none;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+#menu-navegacao li {
+    display: inline;
+}
+
+#menu-navegacao a {
+    display: block;
+    padding: 10px 25px;
+    text-decoration: none;
+    color: var(--cor-texto-claro);
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* EXIGÊNCIA: Hover no menu */
+#menu-navegacao a:hover {
+    background-color: var(--cor-hover-menu);
+    color: var(--cor-texto);
+}
+
+/*
+  ESTILOS DAS SEÇÕES
+*/
+
+main {
+    padding: 20px;
+}
+
+.conteudo-secao {
+    background-color: var(--cor-fundo-claro); /* Usando variável renomeada */
+    margin: 40px auto;
+    padding: 25px;
+    max-width: 900px;
+    box-shadow: var(--sombra-secao);
+    /* EXIGÊNCIA: Cantos arredondados */
+    border-radius: 15px;
+    /* Animação 1: Translação - Ponto de partida */
+    transition: transform 0.3s ease-in-out;
+    scroll-margin-top: 120px; 
+}
+
+/* Melhoria: Adiciona um espaço para o topo da seção ao navegar pela âncora */
+.conteudo-secao h2 {
+    scroll-margin-top: var(--espacamento-fixo); 
+    color: var(--cor-primaria);
+    border-bottom: 2px solid var(--cor-secundaria);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+
+/* EXIGÊNCIA: Translação quando o mouse estiver sobre a seção */
+.conteudo-secao:hover {
+    transform: translateX(10px); /* Move a seção 10px para a direita */
+}
+
+.depoimento {
+    text-align: justify;
+    margin-top: 15px;
+    font-size: 1.1em; /* Ajustado para 1.1em para melhor leitura no geral, mas o 1.4em original não estava errado */
+}
+
+/* Container para o vídeo (ajuda na responsividade) */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Ajuste de Layout - Flexbox */
+.livro-info,
+.perfil-info {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start; /* Alinhamento superior padrão */
+    margin-bottom: 15px;
+}
+
+.perfil-info {
+    align-items: center; /* Alinha o texto do perfil verticalmente */
+}
+
+.texto-perfil {
+    flex-grow: 1;
+}
+
+/* ESTILOS DE IMAGENS */
+
+.imagem-conteudo {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* Animação 2: Aumento da Imagem - Ponto de partida */
+    transition: transform 0.3s ease-in-out;
+}
+
+.livro-info .imagem-conteudo {
+    width: 150px;
+    flex-shrink: 0;
+}
+
+.foto-aluno {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%; /* Foto do aluno circular */
+    flex-shrink: 0;
+}
+
+/* EXIGÊNCIA: Aumento das imagens quando o mouse tiver sobre as imagens */
+.imagem-conteudo:hover {
+    transform: scale(1.05); /* Aumenta a imagem em 5% */
+}
+
+/* ESTILOS DE LINKS E REDES SOCIAIS */
+
+.link-externo {
+    margin-top: 20px; /* Adiciona margem acima do link externo */
+}
+
+.link-externo a, 
+.link-social {
+    color: var(--cor-primaria);
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 15px;
+    transition: color 0.3s ease;
+}
+
+.link-externo a:hover, 
+.link-social:hover {
+    color: var(--cor-secundaria);
+    text-decoration: underline;
+}
+
+.redes-sociais {
+    margin-top: 20px;
+}
+
+/*
+  ESTILOS DO RODAPÉ
+*/
+
+footer {
+    background-color: var(--cor-texto);
+    color: var(--cor-texto-claro);
+    text-align: center;
+    padding: 15px;
+    font-size: 0.9em;
+    margin-top: 40px;
+    width: 100%; /* Garante que ocupe a largura total */
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+/*
+  AJUSTES DE RESPONSIVIDADE
+*/
+
+@media (max-width: 768px) {
+    /* Alturas Fixas para Mobile */
+    :root {
+        --altura-menu-mobile: 130px; /* Altura aproximada do menu vertical */
+        --espacamento-fixo: calc(var(--altura-cabecalho) + var(--altura-menu-mobile));
+    }
+
+    body {
+        /* Ajuste baseado nas novas alturas fixas para mobile */
+        padding-top: var(--espacamento-fixo); 
+    }
+
+    #cabecalho {
+        padding: 15px 10px;
+    }
+
+    #menu-navegacao {
+        top: var(--altura-cabecalho); /* Mantém abaixo do cabeçalho */
+    }
+
+    #menu-navegacao ul {
+        flex-direction: column; /* Menu vertical em telas pequenas */
+    }
+
+    #menu-navegacao a {
+        padding: 5px 10px; /* Diminui o padding vertical do item de menu */
+    }
+
+    .livro-info, 
+    .perfil-info {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .livro-info .imagem-conteudo {
+        width: 60%;
+        margin: 0 auto; /* Centraliza a imagem do livro */
+    }
+
+    .foto-aluno {
+        margin-bottom: 10px;
+    }
+
+    .texto-perfil .depoimento {
+        text-align: left; /* Mantém o depoimento justificado ou alinhado à esquerda para blocos maiores */
+    }
+}
+
+/* Ajuste adicional para telas muito estreitas */
+@media (max-width: 480px) {
+    .conteudo-secao {
+        padding: 15px;
+        margin: 20px auto;
+    }
+
+    .depoimento {
+        font-size: 1em;
+    }
+}
